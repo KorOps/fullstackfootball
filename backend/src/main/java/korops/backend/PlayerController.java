@@ -1,11 +1,8 @@
 package korops.backend;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -16,7 +13,31 @@ public class PlayerController {
     private final PlayerService service;
 
     @GetMapping
-    public List<Player> getAllPlayers(){
+        public List<Players> getAllPlayers(){
+
         return service.getAllPlayers();
     }
+
+    @GetMapping("/{id}")
+        public Players getById(@PathVariable String id){
+
+        return service.getPlayerById(id);
+    }
+
+    @PostMapping
+        public Players savePlayer(@RequestBody Players player){
+
+        return service.savePlayer(player);
+    }
+
+    @DeleteMapping("/{id}")
+        public void deletePlayer(@PathVariable String id) {
+        service.deletePlayer(id);
+    }
+
+    @GetMapping("/find/{firstname}/{lastname}")
+        public Players findPlayerByFirstnameAndLastname(@PathVariable String firstname, @PathVariable String lastname){
+        return service.findPlayerByFirstnameAndLastname(firstname, lastname);
+    }
+
 }

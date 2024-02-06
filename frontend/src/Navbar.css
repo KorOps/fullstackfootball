@@ -1,0 +1,35 @@
+.active {
+    background-color: grey;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #aa1c1c;
+    position: sticky;
+    top: 0;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+}
+
+nav ul li a:hover {
+    color: white;
+    font-weight: bolder;
+}

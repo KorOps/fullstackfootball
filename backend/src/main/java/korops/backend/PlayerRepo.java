@@ -1,15 +1,16 @@
 package korops.backend;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.Optional;
+
 
 @Repository
-public class PlayerRepo {
+public interface PlayerRepo extends MongoRepository<Players, String> {
 
-    Map<String, Player> playerMap = new HashMap<>();
-
-    public List<Player> getAllPlayers() {
-        return new ArrayList<>(playerMap.values());
-    }
+    public Optional<Players> findPlayerById (String id);
+    public Optional<Players> findPlayerByFirstnameAndLastname (String firstname,
+                                                              String lastname);
 }
+
