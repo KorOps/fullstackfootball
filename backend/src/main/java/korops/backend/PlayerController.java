@@ -1,9 +1,10 @@
 package korops.backend;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+
+
 
 @RestController
 @RequestMapping("/api/player")
@@ -29,6 +30,11 @@ public class PlayerController {
 
         return service.savePlayer(player);
     }
+
+   @PutMapping("/{id}")
+   public Players updatePlayer(@PathVariable String id, @RequestBody Players updatedPlayer) {
+       return service.updatePlayer(id, updatedPlayer);
+   }
 
     @DeleteMapping("/{id}")
         public void deletePlayer(@PathVariable String id) {

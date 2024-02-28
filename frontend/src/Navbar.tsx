@@ -13,6 +13,7 @@ export const Navbar = () => {
                 <li><NavLink to={"/middlefield"}>Middlefielder</NavLink></li>
                 <li><NavLink to={"/defender"}>Defender</NavLink></li>
                 <li><NavLink to={"/goalkeeper"}>Goalkeeper</NavLink></li>
+                <li><NavLink to={"/playermanagement"}>PlayerManagement</NavLink></li>
             </ul>
         </nav>
         </div>

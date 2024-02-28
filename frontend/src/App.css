@@ -65,7 +65,24 @@ html, body {
     border: 1px solid green;
   }
 
+label {
+  display: flex;
+  /*border: 1px solid green;*/
+  width: 250px;
+  padding-bottom: 5px;
+}
 
+input {
+  margin-left: ;
+  position: ;
+  border-radius: 0.5rem;
+}
+
+button {
+  background-color: grey;
+  font-style: italic;
+  font-weight: bold;
+}
 
 
   .filter-nav {

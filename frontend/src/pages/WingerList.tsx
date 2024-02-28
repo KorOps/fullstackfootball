@@ -15,7 +15,7 @@ const WingerList = () => {
     return (
         <div>
 
-            <h2>Strikers</h2>
+            <h2>Wingers</h2>
             <ul>
                 {filteredWingers.map(player => (
                     <li key={player["id"]}>

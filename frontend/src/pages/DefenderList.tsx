@@ -10,12 +10,12 @@ const DefenderList = () => {
             .catch(error => console.error("Error fetching data:", error));
     }, []);
 
-    const filteredDefenders = players.filter(player => player.position.toLowerCase() === "defender");
+    const filteredDefenders = players.filter((player) => player.position.toLowerCase() === "defender");
 
     return (
         <div>
 
-            <h2>Strikers</h2>
+            <h2>Defenders</h2>
             <ul>
                 {filteredDefenders.map(player => (
                     <li key={player["id"]}>

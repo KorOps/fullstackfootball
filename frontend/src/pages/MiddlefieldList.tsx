@@ -15,7 +15,7 @@ const MiddlefieldList = () => {
     return (
         <div>
 
-            <h2>Strikers</h2>
+            <h2>Middlefielers</h2>
             <ul>
                 {filteredMiddlefields.map(player => (
                     <li key={player["id"]}>

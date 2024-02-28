@@ -1,6 +1,5 @@
 import { useEffect, useState} from "react";
 import axios from "axios";
-import {Navbar} from "./Navbar.tsx";
 
 const PlayerList = () => {
     const [players, setPlayers] = useState([]);
@@ -16,9 +15,6 @@ const PlayerList = () => {
 
         <div>
 
-            <div className="navbar"> {<Navbar />} </div>
-
-            <h2>Ballers</h2>
             <ul>
                 {players.map(player => (
                     <li key={player["id"]}>

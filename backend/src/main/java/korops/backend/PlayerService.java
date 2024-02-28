@@ -25,6 +25,13 @@ public class PlayerService {
         return repo.save(player);
         }
 
+    public Players updatePlayer(String id, Players updatedPlayer) {
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Player Not Found");
+        }
+        return repo.save(updatedPlayer);
+    }
+
     public void deletePlayer(String id) {
         repo.deleteById(id);}
 

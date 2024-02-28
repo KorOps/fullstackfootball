@@ -15,7 +15,7 @@ const GoalkeeperList = () => {
     return (
         <div>
 
-            <h2>Strikers</h2>
+            <h2>Goalkeepers</h2>
             <ul>
                 {filteredGoalkeepers.map(player => (
                     <li key={player["id"]}>

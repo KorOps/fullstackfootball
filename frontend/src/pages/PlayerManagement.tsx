@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./App.css"
 
 const PlayerManagement = () => {
     const [players, setPlayers] = useState([]);
@@ -14,6 +13,8 @@ const PlayerManagement = () => {
         position: '',
         team: ''
     });
+
+    const [editingPlayerId, setEditingPlayerId] = useState(null);
 
     useEffect(() => {
         fetchPlayers();
@@ -54,25 +55,52 @@ const PlayerManagement = () => {
         }
     };
 
+
+    {/*this is to edit a player - just testing*/}
+    const handleEdit = (playerId) => {
+        setEditingPlayerId(playerId);
+        const playerToEdit = players.find(player => player["id"] === playerId);
+        setNewPlayer({ ...playerToEdit });
+    };
+
+    const handleUpdate = async () => {
+        try {
+            await axios.put(`/api/player/${editingPlayerId}`, newPlayer);
+            setEditingPlayerId(null);
+            setNewPlayer({
+                firstname: '',
+                lastname: '',
+                nationality: '',
+                age: 0,
+                height: 0,
+                foot: '',
+                position: '',
+                team: ''
+            });
+
+            fetchPlayers();
+        } catch (error) {
+            console.error('Error updating player:', error);
+        }
+    };
+    {/*this is to edit a player - just testing*/}
+
     const handleDelete = async (id) => {
         try {
             await axios.delete(`/api/player/${id}`);
-            fetchPlayers();
+            await fetchPlayers();
         } catch (error) {
             console.error('Error deleting player:', error);
         }
     };
 
-    const handleLogout = () => {
-        window.location.href = '/index.html';
-    };
+
 
     return (
         <div className="admin-players">
-            <h2>Player Management Panel</h2>
+            <h2>Administrator Panel</h2>
 
-            {/* Form for adding new player */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={editingPlayerId ? handleUpdate : handleSubmit}>
                 <label>
                     Firstname:
                     <input type="text" name="firstname" value={newPlayer.firstname} onChange={handleInputChange} />
@@ -85,17 +113,17 @@ const PlayerManagement = () => {
 
                 <label>
                     Nationality:
-                    <input type="text" name="nationaliy" value={newPlayer.nationality} onChange={handleInputChange} />
+                    <input type="text" name="nationality" value={newPlayer.nationality} onChange={handleInputChange} />
                 </label>
 
                 <label>
                     Age:
-                    <input type="text" name="age" value={newPlayer.age} onChange={handleInputChange} />
+                    <input type="number" name="age" value={newPlayer.age} onChange={handleInputChange} />
                 </label>
 
                 <label>
                     Height:
-                    <input type="text" name="height" value={newPlayer.height} onChange={handleInputChange} />
+                    <input type="number" name="height" value={newPlayer.height} onChange={handleInputChange} />
                 </label>
 
                 <label>
@@ -113,19 +141,19 @@ const PlayerManagement = () => {
                     <input type="text" name="team" value={newPlayer.team} onChange={handleInputChange} />
                 </label>
 
-                <button type="submit">Add Player</button>
+                <button type="submit">{editingPlayerId ? 'Update Player' : 'Add Player'}</button>
             </form>
 
 
             <ul>
                 {players.map((player) => (
-                    <li key={player.id}>
-                        {player.firstname} {player.lastname} - {player.position}
-                        <button onClick={() => handleDelete(player.id)}>Delete</button>
+                    <li key={player["id"]}>
+                        {player["firstname"]} {player["lastname"]} - {player["position"]}
+                        <button onClick={() => handleEdit(player["id"])}>Edit</button>
+                        <button onClick={() => handleDelete(player["id"])}>Delete</button>
                     </li>
                 ))}
             </ul>
-            <div className="admin-logout"><button onClick={handleLogout}>Logout</button></div>
         </div>
     );
 };
