@@ -141,7 +141,7 @@ class PlayerControllerTest {
 
 
     @Test
-    void findPlayerByFirstnameAndLastname() {
+    void findPlayerByFirstnameAndLastname_ableToReturnPlayerByFirstnameAndLastnameWhenCalled() {
         Player player= new Player(1, "Jamie");
         PlayerRepo.save(player);
 
